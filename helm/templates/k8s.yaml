@@ -20,7 +20,7 @@ spec:
         - containerPort: 80
         env:
         - name: GREETING
-          key: {{ .Values.suffix }}
+          value: {{ .Values.suffix }}
 ---
 apiVersion: v1
 kind: Service
