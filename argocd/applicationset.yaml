@@ -14,9 +14,9 @@ spec:
         # For GitHub Enterprise (optional)
 #        api: https://git.example.com/
         # Reference to a Secret containing an access token. (optional)
-#        tokenRef:
-#          secretName: github-token
-#          key: token
+        tokenRef:
+          secretName: github-token
+          key: token
         # Labels is used to filter the PRs that you want to target. (optional)
         labels:
         - deploy
