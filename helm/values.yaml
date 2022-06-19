@@ -1,0 +1,5 @@
+suffix: -local
+ping-go:
+  image:
+    name: umi0410/ping-go
+    tag: latest

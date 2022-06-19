@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ping-go{{ .Values.suffix }}
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: ping-go{{ .Values.suffix }}
+  template:
+    metadata:
+      labels:
+        app: ping-go{{ .Values.suffix }}
+    spec:
+      containers:
+      - image: "{{ index .Values "ping-go" "image" "name" }}:{{ index .Values "ping-go" "image" "tag" }}"
+        name: ping-go{{ .Values.suffix }}
+        ports:
+        - containerPort: 80
+        env:
+        - name: FOO
+          valueFrom:
+            configMapKeyRef:
+              name: GREET
+              key: {{ .Values.suffix }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ping-go{{ .Values.suffix }}
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: ping-go{{ .Values.suffix }}
