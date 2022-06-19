@@ -14,13 +14,13 @@ spec:
         # For GitHub Enterprise (optional)
 #        api: https://git.example.com/
         # Reference to a Secret containing an access token. (optional)
-        tokenRef:
-          secretName: github-token
-          key: token
+#        tokenRef:
+#          secretName: github-token
+#          key: token
         # Labels is used to filter the PRs that you want to target. (optional)
         labels:
         - deploy
-      requeueAfterSeconds: 15 # 1800 by default
+      requeueAfterSeconds: 60 # 1800 by default
   template:
     metadata:
       name: 'ping-go-{{branch}}-{{number}}'
@@ -32,7 +32,9 @@ spec:
         helm:
           parameters:
             - name: "suffix"
-              value: "-{{head_sha}}"
+              value: "-{{branch}}"
+            - name: "ping-go.image.tag"
+              value: "{{head_sha}}"
       project: default
       destination:
         server: https://kubernetes.default.svc
