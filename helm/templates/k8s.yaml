@@ -19,11 +19,8 @@ spec:
         ports:
         - containerPort: 80
         env:
-        - name: FOO
-          valueFrom:
-            configMapKeyRef:
-              name: GREET
-              key: {{ .Values.suffix }}
+        - name: GREETING
+          value: {{ .Values.suffix }}
 ---
 apiVersion: v1
 kind: Service
