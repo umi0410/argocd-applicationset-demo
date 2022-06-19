@@ -26,5 +26,5 @@ jobs:
 
     - name: build and release to DockerHub
       run: |
-        docker build  . -t umi0410/ping-go:${{ env.GITHUB_SHA }}
-        docker push umi0410/ping-go:${{ env.GITHUB_SHA }}
+        docker build  . -t umi0410/ping-go:$GITHUB_SHA
+        docker push umi0410/ping-go:GITHUB_SHA
