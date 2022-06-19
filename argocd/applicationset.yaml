@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: myapps
+  namespace: argocd
 spec:
   generators:
   - pullRequest:
@@ -36,3 +37,5 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: default
+      syncPolicy:
+        automated: { }
